@@ -28,8 +28,6 @@
     <label>3번째랠리 출발시간 : </label>
     <input type="text" v-model="T3" disabled>
     <br>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8128490580953600"
-     crossorigin="anonymous"></script>
   </div>
 </template>
 
