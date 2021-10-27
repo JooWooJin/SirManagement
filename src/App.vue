@@ -25,6 +25,8 @@
     <label style="width:40px">초</label>
     <input type="text" placeholder="랠리장 이름 메모" style="width:200px">
     <br>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8128490580953600"
+     crossorigin="anonymous"></script>
   </div>
 </template>
 
