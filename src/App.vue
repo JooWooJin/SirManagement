@@ -57,7 +57,7 @@ export default {
         BT2 : 0,
     }
   },
-  watch:
+  watch:{
     'M1': {
         handler: function(val, oldVal) {
             if(val != oldVal){
