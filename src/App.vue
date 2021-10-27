@@ -16,7 +16,7 @@
     <label style="width:40px">초</label>
     <input type="text" placeholder="랠리장 이름 메모" style="width:200px">
     <br>
-    <label>출발시간 : </label>
+    <label>2번째랠리 출발시간 : </label>
     <input type="text" v-model="T2" disabled>
     <div>3번째랠리 행군시간</div>
     <input type="number" v-model="M3" style="width:80px">
@@ -24,6 +24,9 @@
     <input type="number" v-model="S3" style="width:80px">
     <label style="width:40px">초</label>
     <input type="text" placeholder="랠리장 이름 메모" style="width:200px">
+    <br>
+    <label>3번째랠리 출발시간 : </label>
+    <input type="text" v-model="T3" disabled>
     <br>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8128490580953600"
      crossorigin="anonymous"></script>
