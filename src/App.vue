@@ -1,223 +1,190 @@
 <template>
   <div id="app">
-    <section v-if="loginAcess && !signUp">
-        <h2>SIR - ManageMent</h2>
-        <table>
-                <tr>
-                    <th>닉네임</th>
-                    <th>닉네임</th>
-                    <th>닉네임</th>
-                    <th>닉네임</th>
-                </tr>
-                <tr>
-                    <td>테스트</td>
-                    <td>테스트</td>
-                    <td>테스트</td>
-                    <td>테스트</td>
-                </tr>
-                <tr>
-                    <td>테스트</td>
-                    <td>테스트</td>
-                    <td>테스트</td>
-                    <td>테스트</td>
-                </tr>
-        </table>
-    </section>
-    <section v-if="!loginAcess && !signUp">
-        <div class="box">
-          <h1>SIR 동맹관리시스템</h1>
-          <input type="text" placeholder="아이디(닉네임)" v-model="userId">
-          <input type="password" placeholder="비밀번호" v-model="userPw" @keyup.enter="singIn">
-          <input type="button" value="로그인" @click="signIn">
-          <input type="button" value="회원가입" @click="signUp=true;">
-        </div>
-    </section>
-    <section v-if="signUp">
-        <div class="box">
-            <h1>회원가입</h1>
-                <input type="text" placeholder="아이디(닉네임)" v-model="userId">
-                <input type="password" placeholder="비밀번호" v-model="userPw">
-                <input type="password" placeholder="비밀번호확인" v-model="userPwCheck" @keyup.enter="setNewAccount">
-                <input type="button" value="가입신청" @click="setNewAccount">
-            </div>
-        </section>
-    </div>
+    <div>제작 493 SIR 우진</div>
+    <br>
+    <div>백투백 랠리 계산용 1번째 랠리기준</div>
+    <div>1번째랠리 행군시간</div>
+    <input type="number" v-model="M1" style="width:80px">
+    <label style="width:40px">분</label>
+    <input type="number" v-model="S1" style="width:80px">
+    <label style="width:40px">초</label>
+    <input type="text" placeholder="랠리장 이름 메모" style="width:200px">
+    <div>2번째랠리 행군시간</div>
+    <input type="number" v-model="M2" style="width:80px">
+    <label style="width:40px">분</label>
+    <input type="number" v-model="S2" style="width:80px">
+    <label style="width:40px">초</label>
+    <input type="text" placeholder="랠리장 이름 메모" style="width:200px">
+    <br>
+    <label>출발시간 : </label>
+    <input type="text" v-model="T2" disabled>
+    <div>3번째랠리 행군시간</div>
+    <input type="number" v-model="M3" style="width:80px">
+    <label style="width:40px">분</label>
+    <input type="number" v-model="S3" style="width:80px">
+    <label style="width:40px">초</label>
+    <input type="text" placeholder="랠리장 이름 메모" style="width:200px">
+    <br>
+  </div>
 </template>
 
 <script>
-
 export default {
+  name: 'App2',
   data () {
     return {
-        loginAcess : false,
-        userId : '',
-        userPw : '',
-        userPwCheck: '',
-        errorMsg : '',
-        signUp : false,
-        selectDay : {
-
-        },
+        Inf : 0,
+        Rid : 0,
+        Hun : 0,
+        all : 0,
+        M1 : 0,
+        M2 : 0,
+        M3 : 0,
+        M4 : 0,
+        S1 : 0,
+        S2 : 0,
+        S3 : 0,
+        S4 : 0,
+        T1 : 0,
+        T2 : 0,
+        T3 : 0,
+        T4 : 0,
+        BS1 : 0,
+        BS2 : 0,
+        BM1 : 0,
+        BM2 : 0,
+        BT1 : 0,
+        BT2 : 0,
     }
   },
-  components:{
+  watch:
+    'M1': {
+        handler: function(val, oldVal) {
+            if(val != oldVal){
+                this.setTime();
+            }
+        }
+    },
+    'M2': {
+     handler: function(val, oldVal) {
+         if(val != oldVal){
+             this.setTime();
+         }
+     }
+    },
+    'M3': {
+    handler: function(val, oldVal) {
+       if(val != oldVal){
+           this.setTime();
+       }
+    }
+    },
+    'M4': {
+     handler: function(val, oldVal) {
+         if(val != oldVal){
+             this.setTime();
+         }
+     }
+    },
+     'S1': {
+         handler: function(val, oldVal) {
+             if(val != oldVal){
+                 this.setTime();
+             }
+         }
+     },
+     'S2': {
+      handler: function(val, oldVal) {
+          if(val != oldVal){
+              this.setTime();
+          }
+      }
+     },
+     'S3': {
+     handler: function(val, oldVal) {
+        if(val != oldVal){
+            this.setTime();
+        }
+     }
+     },
+     'S4': {
+      handler: function(val, oldVal) {
+          if(val != oldVal){
+              this.setTime();
+          }
+      }
+      },
+     'BS1': {
+      handler: function(val, oldVal) {
+          if(val != oldVal){
+              this.setBackToBack();
+          }
+        }
+      },
+     'BS2': {
+      handler: function(val, oldVal) {
+          if(val != oldVal){
+              this.setBackToBack();
+          }
+        }
+      },
+     'BM1': {
+      handler: function(val, oldVal) {
+          if(val != oldVal){
+              this.setBackToBack();
+          }
+        }
+      },
+     'BM2': {
+      handler: function(val, oldVal) {
+          if(val != oldVal){
+              this.setBackToBack();
+          }
+      }
+     }
   },
   methods:{
-    signIn(){
-        var self = this;
-        var params = {
-            USER_ID : self.userId,
-            USER_PW : self.userPw
-        }
-        this.axios.post("/api/login",params).then(function(response){
-            if(response.data.length>0) {
-                if(response.data[0].ALLOW == 1) {
-                    self.loginAcess = true;
-                }
-                else {
-                    alert('관리자 승인이 필요한 계정입니다. 관리자에게 문의해주세요.');
-                }
-            }
-            else{
-                alert('해당 아이디나 비밀번호가 일치하는 계정이 없습니다.');
-            }
-        });
+    setUnit: function(){
     },
-    setNewAccount(){
-        var self = this;
-        if(this.userPw   == this.userPwCheck){
-            var params = {
-                USER_ID : self.userId,
-                USER_PW : self.userPw
-            }
-            this.axios.post("/api/signup",params).then(function(response){
-                alert(response.data.message);
-                self.signUp = false;
-            });
-        }
-        else{
-            alert('비밀번호 확인을 정확히 입력해주세요.');
-        }
+    setTime: function(){
+        this.T1 = parseInt(this.M1*60)+parseInt(this.S1);
+        var t2,t3,t4;
+        
+        if(this.M2 != '')
+            t2 = (300-(parseInt(this.T1) - (parseInt(this.M2*60) + parseInt(this.S2))));
+        else
+            t2 = (300-(parseInt(this.T1) - (parseInt(this.S2))));
+        if(parseInt(t2)%60>10)
+            this.T2 = Math.floor(parseInt(t2)/60) + ':' + parseInt(t2)%60;
+        else
+            this.T2 = Math.floor(parseInt(t2)/60) + ':0' + parseInt(t2)%60;
+        if(this.M3 != '')
+            t3 = (300-(parseInt(this.T1) - (parseInt(this.M3*60) + parseInt(this.S3))));
+        else
+            t3 = (300-(parseInt(this.T1) - (parseInt(this.S3))));
+        
+        if(parseInt(t3%60)>10)
+            this.T3 = Math.floor(t3/60) + ':' + t3%60;
+        else
+            this.T3 = Math.floor(t3/60) + ':0' + t3%60;
     }
-  }
+  },
 }
 </script>
 
 <style>
-h3.input[type="button"]{
-    background-color: white;
-    padding: 15px 30px;
-    text-align:
-    center;font-size: 40px;
-    margin: 10px 10px;
-    cursor: pointer;
-    border-radius: 15px;
-    width:600px;
+label {
+    width:100px;
+    font-size: 20px;
+    font-weigh: border;
 }
-
-.box{
-  height: 70%;
-  width: 80%;
-  position: absolute;
-  left: 10%;
-  top: 30%;
-  background: #191919;
-  text-align: center;
+input{
+    width:200px;
+    font-size: 20px;
 }
-.box h1{
-  color: white;
-  text-transform: uppercase;
-  font-weight: 500;
-}
-.box input[type = "text"],.box input[type = "password"]{
-  border:0;
-  background: none;
-  display: block;
-  margin: 20px auto;
-  text-align: center;
-  border: 2px solid #3498db;
-  padding: 14px 10px;
-  width: 200px;
-  outline: none;
-  color: white;
-  border-radius: 24px;
-  transition: 0.25s;
-}
-.box input[type = "text"]:focus,.box input[type = "password"]:focus{
-  border-color: #2ecc71;
-}
-.box input[type = "button"]{
-  border:0;
-  background: none;
-  display: block;
-  margin: 20px auto;
-  text-align: center;
-  border: 2px solid #2ecc71;
-  padding: 14px 40px;
-  outline: none;
-  color: white;
-  border-radius: 24px;
-  transition: 0.25s;
-  cursor: pointer;
-}
-.box input[type = "button"]:hover{
-  background: #2ecc71;
-}
-
-* {
-  box-sizing: border-box;
-}
-
-html.open, body.open {
-  height: 100%;
-  overflow: hidden;
-}
-
-html {
-  padding: 40px;
-  font-size: 62.5%;
-}
-
-body {
-  margin: 0;
-  padding: 0;
-  font-family: sans-serif;
-  background: #191919;
-  padding: 20px;
-  line-height: 1.6;
-  -webkit-font-smoothing: antialiased;
-  color: #fff;
-}
-
-p {
-  text-align: center;
-  margin: 20px 0 60px;
-}
-
-main {
-  background-color: #2C3845;
-}
-
-h1 {
-  text-align: center;
-  font-weight: 300;
-}
-
-[type="checkbox"]:checked + label span:last-child {
-  background: var(--green);
-}
-
-[type="checkbox"]:checked + label span:last-child::before {
-  transform: translateX(24px);
-}
-
-[type="checkbox"]:checked + label span:last-child::after {
-  width: 14px;
-  height: 14px;
-  /*right: auto;*/
-  left: 8px;
-  background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/162656/checkmark-switcher.svg);
-  background-size: 14px 14px;
+div {
+    font-size: 20px;
+    font-weight:bold;
 }
 
 </style>
