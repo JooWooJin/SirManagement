@@ -153,7 +153,7 @@ export default {
     },
     setTime: function(){
         this.T1 = parseInt(this.M1*60)+parseInt(this.S1);
-        var t2,t3,t4;
+        var t2,t3;
         
         if(this.M2 != '')
             t2 = (300-(parseInt(this.T1) - (parseInt(this.M2*60) + parseInt(this.S2))));
